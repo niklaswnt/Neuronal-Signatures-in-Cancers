@@ -81,9 +81,9 @@ for (k_i in ranks) {
 }
 ```
 
-The result should look like the following heatmap `(for ..., k = )`
+The result should look like the following heatmap (for healthy breast tissue, k = 11)
 
-![W](analysis/W_Heatmaps/breast_w_heatmaps.png)
+![W](analysis/single_heatmaps/breast/w_heatmap_11.png)
 
 ### 7.2 H Heatmaps
 The H heatmaps show which patient is influenced by which signature. For that, the exposure is normalized by the maximum exposure per patient (column). The `HHeatmap()` function is based on ButchR.
@@ -95,7 +95,9 @@ for (k_i in ranks) {
 }
 ```
 
-The result should look like the following heatmap `(for ..., k = )`
+The result should look like the following heatmap (for healthy breast tissue, k = 11)
+
+![](analysis/single_heatmaps/breast/h_heatmap_11.png)
 
 ## 8 Riverplots for signature stability
 Using the `riverplot` package and the custom `scaleRiverplot()` function, riverplots are generated to look at the stability of the signatures for different ranks.
