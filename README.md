@@ -137,7 +137,9 @@ The two groups are compared for their survival in all tumors. For this, Kaplan-M
 generateSurvivalplot(tumor = "BRCA", search_term = "neuronal system", seq_data = NULL, nmf = NULL, clusterprofiler = NULL, surv_data = NULL)
 ```
 
-The result should look like the following Kaplan-Meier plot `(for ...)`
+The result should look like the following Kaplan-Meier plot (for lung cancer)
+
+![](analysis/A-LIHC_survival.png)
 
 ### 10.2 Phenotype comparison
 Several phenotypic characteristics were compared as well between the two groups. Chi-squared tests are performed for a specified characteristic. This can be achieved using the custom `chisquare()` function. The input is identical to the `generateSurvivalplot()` function, but instead of the `surv_data` argument, it has the `pheno_data` argument. The output is a `htest` object, which includes the p-value and a contingency table.
