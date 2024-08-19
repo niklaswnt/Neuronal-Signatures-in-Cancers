@@ -17,7 +17,7 @@ The non-negative matrix factorization (NMF) is based on the [ButchR](https://git
 
 ## 4 Loading necessary libraries, functions and data
 The `libraries_and_data.r` file loads all necessary libraries needed for the analysis, as well as all functions that were created during the thesis and the data that was used in the analysis. Therefore, when starting the analysis, one should start by loading this file in R:
-```{r}
+``` r 
 source("/path/to/file/libraries_and_data.r")
 ```
 
@@ -30,7 +30,7 @@ All functions that were created for this project are in the `functions` folder. 
 The data used in this project is either TCGA FPKM gene expression RNAseq data for 16 tumor tissues obtained from the [GDC Xena Hub](https://gdc.xenahubs.net/), while gene count healthy tissue data was obtained from the [GTEx Portal](https://gtexportal.org/home/downloads/adult-gtex/bulk_tissue_expression). While the FPKM gene expression data is ready to use in the `run_NMF_tensor()` function of the ButchR package, the gene count data from GTEx first had to be transformed to match the log2(FPKM + 1) transformation of the tumor data. \\
 In my thesis, the gene count data was transformed into log2(FPKM + 1) data by using the `ensembl` database to get the transcript length of each gene (using the custom `call_ensembl()` function). For the transformation, the first three columns are ignored in the following code, as these columns are gene ids and descriptions in GTEx gene count data. If other gene count data is used, all non-numeric columns need to be ommited. If the healthy tissue data is already in FPKM format, the transformation is not necessary.
 
-```{r}
+``` r 
 # Read GCT (Example)
 tissue_data = read.delim(file="/path/to/file/gene_reads_tissue.gct", skip=2)
 
@@ -49,21 +49,21 @@ The NMF is performed using the `run_NMF_tensor()` function of the ButchR package
 ### 6.1 For TCGA FPKM gene expression data
 The TCGA FPKM data is already ready for running NMF, but the gene id column needs to be removed before starting the analysis.
 
-```{r}
+``` r 
 tumor_nmf = run_NMF_tensor(X = TCGA_FPKM_data[,-1], ranks = 2:20, method = "NMF", n_initializations = 30, extract_features = TRUE)
 ```
 
 ### 6.2 For healthy tissue data
 For healthy tissue, the `fpkm_tissue` data obtained in section 5 is used. As it only contains numeric values, no column needs to be removed.
 
-```{r}
+``` r 
 tissue_nmf = run_NMF_tensor(X = fpkm_tissue, ranks = 2:20, method = "NMF", n_initializations = 30, extract_features = TRUE)
 ```
 
 ### 6.3 Normalize W Matrix
 Before starting with further analysis, the W matrices of each NMF should be normalized using the `normalizeW()` function of the ButchR package:
 
-```{r}
+``` r 
 nmf = normalizeW(nmf)
 ```
 
@@ -73,7 +73,7 @@ To take a first look at the product of the NMF, heatmaps were created for all W 
 ### 7.1 W Heatmaps
 The W heatmaps show which gene belongs to which signature. The heatmaps only show signature-specific genes, so genes that belong to only one signature. They are sorted based on the `SignatureSpecificFeatures()` function of the ButchR package, and the custom `feature_selection()` and `WHeatmap()` functions are based on ButchR as well. 
 
-```{r}
+``` r 
 for (k_i in ranks) {
     featureselection = feature_selection(nmf = nmf, k = k_i)
     specific_W = featureselection[[2]]
@@ -86,7 +86,7 @@ The result should look like the following heatmap `(for ..., k = )`
 ### 7.2 H Heatmaps
 The H heatmaps show which patient is influenced by which signature. For that, the exposure is normalized by the maximum exposure per patient (column). The `HHeatmap()` function is based on ButchR.
 
-```{r}
+``` r 
 for (k_i in ranks) {
     H_Matrix = normalize_H(nmf, k = k_i)
     assign(paste0("HHeatmap_", k_i), HHeatmap(H_Matrix, name = paste0("k = ", k_i)))
@@ -109,12 +109,12 @@ The result should look like the following riverplot `(for ...)`
 ## 9 Pathway Enrichment Analysis
 In order to identify the biological relevance of each signature, pathway enrichment analysis is performed using the `Reactome` database via the `clusterProfiler` package. A list is created for every NMF, which contains an enrichResult for every signature and rank. This is achieved by using the custom `call_clusterprofiler()` function. 
 
-```{r}
+``` r 
 enriched_terms = call_clusterprofiler(nmf, gene_id_column, ranks = 3:20, pvalue = 0.05, skip = NULL, geneType = "ENSEMBL")
 ```
 
 The result is in the following format:
-```{r}
+``` r 
 list("k1" = list("Signature_1" = enrichResult object, "Signature_2" = enrichResult object), "k2" = list("Signature_1" = enrichResult object, "Signature_2" = enrichResult object), ...)
 ```
 
@@ -126,7 +126,7 @@ The enrichment results were used to compare survival and phenotypic characterist
 ### 10.1 Survival Analysis
 The two groups are compared for their survival in all tumors. For this, Kaplan-Meier plots are created. The custom `generateSurvivalplot()` function creates such a plot after sorting the patients into two groups. The type of enrichment can be specified with the `search_term` argument, which allows for comparison of patients with enrichment different from neuronal enrichment. The data needed can be specified manually, or the function will call it based the `tcga_df` object defined for this thesis. This automatic call only works for the 16 tumors used in the thesis, unless the `tcga_df` object is manually expanded.
  
-```{r}
+``` r 
 # Example for automatic call
 generateSurvivalplot(tumor = "BRCA", search_term = "neuronal system", seq_data = NULL, nmf = NULL, clusterprofiler = NULL, surv_data = NULL)
 ```
@@ -136,7 +136,7 @@ The result should look like the following Kaplan-Meier plot `(for ...)`
 ### 10.2 Phenotype comparison
 Several phenotypic characteristics were compared as well between the two groups. Chi-squared tests are performed for a specified characteristic. This can be achieved using the custom `chisquare()` function. The input is identical to the `generateSurvivalplot()` function, but instead of the `surv_data` argument, it has the `pheno_data` argument. The output is a `htest` object, which includes the p-value and a contingency table.
 
-```{r}
+``` r 
 chisquared(tumor = dataset, selection = "tumor_stage.diagnoses")
 chisquared(tumor = dataset, selection = "tumor_stage.diagnoses")$p.value    # Returns the p-value of the test
 chisquared(tumor = dataset, selection = "tumor_stage.diagnoses")$observed   # Returns the contingency table of the test
@@ -145,7 +145,7 @@ chisquared(tumor = dataset, selection = "tumor_stage.diagnoses")$observed   # Re
 
 If the chi-squared test should be performed for every tumor in the `tcga_df` object and checked for every signficiant difference, the following code can be used:
 
-```{r}
+``` r 
 selection = "primary_diagnosis.diagnoses"
 
 p_values = sapply(tcga_df$Dataset, function(x) {
