@@ -82,7 +82,7 @@ for (k_i in ranks) {
 ```
 
 The result should look like the following heatmap `(for ..., k = )`
-![](analysis/W_Heatmaps/breast_w_heatmap.png)
+![W](analysis/W_Heatmaps/breast_w_heatmap.png)
 
 ### 7.2 H Heatmaps
 The H heatmaps show which patient is influenced by which signature. For that, the exposure is normalized by the maximum exposure per patient (column). The `HHeatmap()` function is based on ButchR.
