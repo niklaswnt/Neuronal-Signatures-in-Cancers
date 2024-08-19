@@ -95,9 +95,9 @@ for (k_i in ranks) {
 }
 ```
 
-The result should look like the following heatmap (for healthy breast tissue, k = 11)
+The result should look like the following heatmap (for prostate adenocarcinoma tissue, k = 11)
 
-![](analysis/single_heatmaps/breast/h_heatmap_11.png)
+![](analysis/single_heatmaps/prad/h_heatmap_11.png)
 
 ## 8 Riverplots for signature stability
 Using the `riverplot` package and the custom `scaleRiverplot()` function, riverplots are generated to look at the stability of the signatures for different ranks.
@@ -109,6 +109,8 @@ riverplot(rp)
 ```
 
 The result should look like the following riverplot `(for ...)`
+
+![](analysis/Riverplots/brca_riverplot10_2k.png)
 
 ## 9 Pathway Enrichment Analysis
 In order to identify the biological relevance of each signature, pathway enrichment analysis is performed using the `Reactome` database via the `clusterProfiler` package. A list is created for every NMF, which contains an enrichResult for every signature and rank. This is achieved by using the custom `call_clusterprofiler()` function. 
