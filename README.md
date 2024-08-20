@@ -21,10 +21,10 @@ The ![libraries_and_data.r](scripts/libraries_and_data.r) file loads all necessa
 source("/path/to/file/libraries_and_data.r")
 ```
 
-However, the `libraries_and_data.r` file needs to be adjusted to fit the path for all data that it loads.
+However, the ![libraries_and_data.r](scripts/libraries_and_data.r) file needs to be adjusted to fit the path for all data that it loads.
 
 ### 4.1 custom Functions
-All functions that were created for this project are in the `functions` folder. They will be used in this analysis and are automatically available when loading the `libraries_and_data.r` file. There is a description for every function at the start of its definition in their respective functions file. 
+All functions that were created for this project are in the ![functions](functions) folder. They will be used in this analysis and are automatically available when loading the ![libraries_and_data.r](scripts/libraries_and_data.r) file. There is a description for every function at the start of its definition in their respective functions file. 
 
 ## 5 Prepare Data
 The data used in this project is either TCGA FPKM gene expression RNAseq data for 16 tumor tissues obtained from the [GDC Xena Hub](https://gdc.xenahubs.net/), while gene count healthy tissue data was obtained from the [GTEx Portal](https://gtexportal.org/home/downloads/adult-gtex/bulk_tissue_expression). While the FPKM gene expression data is ready to use in the `run_NMF_tensor()` function of the ButchR package, the gene count data from GTEx first had to be transformed to match the log2(FPKM + 1) transformation of the tumor data. \\
@@ -108,7 +108,7 @@ rp = scaleRiverplot(rp, min_rank = 3, max_rank = 20)
 riverplot(rp)
 ```
 
-The result should look like the following riverplot `(for ...)`
+The result should look like the following riverplot `(for breast cancer)`
 
 ![](analysis/Riverplots/brca_riverplot10_2k.png)
 
@@ -142,7 +142,7 @@ The result should look like the following Kaplan-Meier plot (for lung cancer)
 ![](analysis/A-LIHC_survival.png)
 
 ### 10.2 Phenotype comparison
-Several phenotypic characteristics were compared as well between the two groups. Chi-squared tests are performed for a specified characteristic. This can be achieved using the custom `chisquare()` function. The input is identical to the `generateSurvivalplot()` function, but instead of the `surv_data` argument, it has the `pheno_data` argument. The output is a `htest` object, which includes the p-value and a contingency table.
+Several phenotypic characteristics were compared as well between the two groups. Chi-squared tests are performed for a specified characteristic. This can be achieved using the custom `chisquared()` function. The input is identical to the `generateSurvivalplot()` function, but instead of the `surv_data` argument, it has the `pheno_data` argument. The output is a `htest` object, which includes the p-value and a contingency table.
 
 ``` r 
 chisquared(tumor = dataset, selection = "tumor_stage.diagnoses")
