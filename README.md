@@ -54,7 +54,7 @@ tumor_nmf = run_NMF_tensor(X = TCGA_FPKM_data[,-1], ranks = 2:20, method = "NMF"
 ```
 
 ### 6.2 For healthy tissue data
-For healthy tissue, the `fpkm_tissue` data obtained in section 5 is used. As it only contains numeric values, no column needs to be removed.
+For healthy tissue, the `fpkm_tissue` data obtained in ![section 5](https://github.com/niklaswnt/Neuronal-Signatures-in-Cancers/blob/main/README.md#5-prepare-data) is used. As it only contains numeric values, no column needs to be removed.
 
 ``` r 
 tissue_nmf = run_NMF_tensor(X = fpkm_tissue, ranks = 2:20, method = "NMF", n_initializations = 30, extract_features = TRUE)
@@ -113,7 +113,7 @@ The result should look like the following riverplot `(for breast cancer)`
 ![](analysis/Riverplots/brca_riverplot10_2k.png)
 
 ## 9 Pathway Enrichment Analysis
-In order to identify the biological relevance of each signature, pathway enrichment analysis is performed using the `Reactome` database via the `clusterProfiler` package. A list is created for every NMF, which contains an enrichResult for every signature and rank. This is achieved by using the custom `call_clusterprofiler()` function. 
+In order to identify the biological relevance of each signature, pathway enrichment analysis is performed using the ![Reactome](https://reactome.org/) database via the ![clusterProfiler](https://www.rdocumentation.org/packages/clusterProfiler/versions/3.0.4) package. A list is created for every NMF, which contains an enrichResult for every signature and rank. This is achieved by using the custom `call_clusterprofiler()` function. 
 
 ``` r 
 enriched_terms = call_clusterprofiler(nmf, gene_id_column, ranks = 3:20, pvalue = 0.05, skip = NULL, geneType = "ENSEMBL")
