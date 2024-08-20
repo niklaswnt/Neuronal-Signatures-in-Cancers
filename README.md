@@ -5,8 +5,8 @@ This GitHub Repository contains the code and results of the Bachelor´s thesis o
 My thesis was writen at the CROmLab at University of Heidelberg. Many thanks to Prof. Dr. Carl Herrmann and his group for their support in this journey.
 
 ## 2 Data availability
-All data used in this analysis is found in the `data` ![data](data) folder. The contents of the `tumor_tissue`, `phenotype` and `survival` folder were obtained from the [GDC Xena Hub](https://gdc.xenahubs.net/), while the content of the `healthy_tissue` folder was obtained from the [GTEx Portal](https://gtexportal.org/home/downloads/adult-gtex/bulk_tissue_expression).
-Additionally, all RObjects and figures resulting from the analysis is uploaded in the `analysis` folder.
+All data used in this analysis is found in the ![data](data) folder. The contents of the ![tumor_tissue](data/tumor_tissue), ![phenotype](data/phenotype) and ![survival](data/survival) folder were obtained from the [GDC Xena Hub](https://gdc.xenahubs.net/), while the content of the ![healthy_tissue](data/healthy_tissue) folder was obtained from the [GTEx Portal](https://gtexportal.org/home/downloads/adult-gtex/bulk_tissue_expression).
+Additionally, all RObjects and figures resulting from the analysis is uploaded in the ![analysis](analysis) folder.
 
 ## 3 Installation
 ### 3.1 Conda Environment
@@ -16,7 +16,7 @@ The conda environment used for all analyses was exported as a yaml file. This ca
 The non-negative matrix factorization (NMF) is based on the [ButchR](https://github.com/wurst-theke/ButchR) package by [Quintero _et al._](https://doi.org/10.1093/biomethods/bpaa022). In order to properly function, the ButchR package needs specific versions of `reticulate`and `tensorflow`, which are specified in the conda environment.
 
 ## 4 Loading necessary libraries, functions and data
-The `libraries_and_data.r` file loads all necessary libraries needed for the analysis, as well as all functions that were created during the thesis and the data that was used in the analysis. Therefore, when starting the analysis, one should start by loading this file in R:
+The ![libraries_and_data.r](scripts/libraries_and_data.r) file loads all necessary libraries needed for the analysis, as well as all functions that were created during the thesis and the data that was used in the analysis. Therefore, when starting the analysis, one should start by loading this file in R:
 ``` r 
 source("/path/to/file/libraries_and_data.r")
 ```
