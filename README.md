@@ -6,7 +6,7 @@ My thesis was writen at the CROmLab at University of Heidelberg. Many thanks to 
 
 ## 2 Data availability
 All data used in this analysis is found in the ![data](data) folder. The contents of the ![tumor_tissue](data/tumor_tissue), ![phenotype](data/phenotype) and ![survival](data/survival) folder were obtained from the [GDC Xena Hub](https://gdc.xenahubs.net/), while the content of the ![healthy_tissue](data/healthy_tissue) folder was obtained from the [GTEx Portal](https://gtexportal.org/home/downloads/adult-gtex/bulk_tissue_expression).
-Additionally, all R objects and figures resulting from the analysis is uploaded in the ![analysis](analysis) folder.
+Additionally, all R objects and figures resulting from the analysis are uploaded in the ![analysis](analysis) folder.
 
 ## 3 Installation
 ### 3.1 Conda Environment
