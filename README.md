@@ -5,7 +5,7 @@ This GitHub Repository contains the code and results of the Bachelor´s thesis o
 My thesis was writen at the CROmLab at University of Heidelberg. Many thanks to Prof. Dr. Carl Herrmann and his group for their support in this journey.
 
 ## 2 Data availability
-All data used in this analysis is found in the ![data](data) folder. The contents of the ![tumor_tissue](data/tumor_tissue), ![phenotype](data/phenotype) and ![survival](data/survival) folders were obtained from the [GDC Xena Hub](https://gdc.xenahubs.net/), while the healthy tissue-related ![gene count data](data/healthy_tissue/original_data) was obtained from the [GTEx Portal](https://gtexportal.org/home/downloads/adult-gtex/bulk_tissue_expression).
+All data used in this analysis is found in the ![data](data) folder. The contents of the ![tumor_tissue](data/tumor_tissue/original_data), ![phenotype](data/phenotype) and ![survival](data/survival) folders were obtained from the [GDC Xena Hub](https://gdc.xenahubs.net/), while the healthy tissue-related ![gene count data](data/healthy_tissue/original_data) was obtained from the [GTEx Portal](https://gtexportal.org/home/downloads/adult-gtex/bulk_tissue_expression).
 Additionally, all R objects and figures resulting from the analysis are uploaded in the ![analysis](analysis) folder.
 
 ## 3 Installation
